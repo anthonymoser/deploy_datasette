@@ -33,7 +33,7 @@ jobs:
       - id: 'auth'
         uses: google-github-actions/auth@v2.1.3
         with:
-            workload_identity_provider: 'projects/398767518499/locations/global/workloadIdentityPools/github'
+            workload_identity_provider: 'projects/398767518499/locations/global/workloadIdentityPools/github/providers/deploy_datasette'
             service_account: 'datasette-deployer@the-foia-bakery.iam.gserviceaccount.com'
       - name: Set up Cloud Run
         uses: google-github-actions/setup-gcloud@v2.1.0
