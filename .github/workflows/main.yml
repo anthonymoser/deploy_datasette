@@ -31,12 +31,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - id: 'auth'
-        uses: google-github-actions/auth@v2.1.3
+        uses: google-github-actions/auth@v2
         with:
-            workload_identity_provider: 'projects/398767518499/locations/global/workloadIdentityPools/github/providers/deploy_datasette'
+            workload_identity_provider: 'projects/398767518499/locations/global/workloadIdentityPools/github/providers/deploy-datasette'
             service_account: 'datasette-deployer@the-foia-bakery.iam.gserviceaccount.com'
       - name: Set up Cloud Run
-        uses: google-github-actions/setup-gcloud@v2.1.0
+        uses: google-github-actions/setup-gcloud@v2
       - name: set longer cloud build timeout
         run: |
           gcloud config set builds/timeout 1800
