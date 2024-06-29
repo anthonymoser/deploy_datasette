@@ -74,8 +74,7 @@ jobs:
             --install=pysqlite3-binary \
             --install=datasette-hashed-urls \
             --install=datasette-block-robots \
-            --install=datasette-search-all
-            --version-note=$GITHUB_RUN_NUMBER
+            # --install=datasette-search-all
             
       - name: keepalive
         uses: gautamkrishnar/keepalive-workflow@v1            
