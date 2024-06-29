@@ -48,6 +48,7 @@ jobs:
       - name: dependencies
         run: |
           pip install sqlite-utils
+          pip install datasette
           # pip install https://github.com/fgregg/datasette/archive/refs/heads/no_limit_csv_publish.zip
 
       - name: Deploy to Cloudrun
