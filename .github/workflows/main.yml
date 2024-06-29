@@ -38,7 +38,7 @@ jobs:
             service_account: 'datasette-deployer@the-foia-bakery.iam.gserviceaccount.com'
       
       - name: 'Use gcloud CLI'
-        run: 'gcloud info'
+        run: 'gcloud auth list'
       
       - name: Set up Cloud Run
         uses: google-github-actions/setup-gcloud@v2
