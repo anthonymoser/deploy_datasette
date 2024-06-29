@@ -34,17 +34,19 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
             create_credentials_file: true
-            workload_identity_provider: 'projects/398767518499/locations/global/workloadIdentityPools/github/providers/deploy-datasette'
+            workload_identity_provider: 'projects/398767518499/locations/global/workloadIdentityPools/github2/providers/deploy-datasette'
             service_account: 'datasette-deployer@the-foia-bakery.iam.gserviceaccount.com'
       
       - name: 'Use gcloud CLI'
-        run: 'gcloud auth list'
+        run: |
+            'gcloud auth list'
+            'gcloud info'
       
       - name: Set up Cloud Run
         uses: google-github-actions/setup-gcloud@v2
         with: 
           project_id: the-foia-bakery
-          install_components: 'gsutil'
+          # install_components: 'gsutil'
       
       - name: dependencies
         run: |
