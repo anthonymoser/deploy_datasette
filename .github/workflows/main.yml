@@ -36,24 +36,21 @@ jobs:
             create_credentials_file: true
             workload_identity_provider: 'projects/398767518499/locations/global/workloadIdentityPools/github/providers/deploy-datasette'
             service_account: 'datasette-deployer@the-foia-bakery.iam.gserviceaccount.com'
+      
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+      
       - name: Set up Cloud Run
         uses: google-github-actions/setup-gcloud@v2
         with: 
           project_id: the-foia-bakery
           install_components: 'gsutil'
-      # - name: set longer cloud build timeout
-      #   run: |
-      #     gcloud config set builds/timeout 1800
-      #     gcloud config get builds/timeout
       
       - name: dependencies
         run: |
           pip install sqlite-utils
           # pip install https://github.com/fgregg/datasette/archive/refs/heads/no_limit_csv_publish.zip
-      
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
-        
+
       - name: Deploy to Cloudrun
         run: |
           # gcloud config set run/region us-central1
