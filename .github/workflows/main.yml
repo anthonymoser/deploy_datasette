@@ -59,7 +59,7 @@ jobs:
       - name: Deploy to Cloudrun
         run: |
           gcloud config set run/region us-central1
-          # gcloud config set project the-foia-bakery
+          gcloud config set project the-foia-bakery
           gcloud storage cp gs://thefoiabakery/migrant_support_index.db.zip migrant_support_index.db.zip
           unzip migrant_support_index.db.zip
           sqlite-utils enable-fts migrant_support_index.db pages page_text
@@ -69,7 +69,6 @@ jobs:
             --memory 8Gi \
             --cpu 2 \
             --max-instances=2 \
-            
             --service foia-bakery-index \
             --extra-options="--setting sql_time_limit_ms 100000 --cors" \
             --install=pysqlite3-binary \
