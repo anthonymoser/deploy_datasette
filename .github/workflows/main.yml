@@ -65,7 +65,7 @@ jobs:
           sqlite-utils enable-fts migrant_support_index.db pages page_text
           sqlite-utils enable-fts migrant_support_index.db documents name
           
-          datasette publish cloudrun *.db \
+          datasette publish cloudrun migrant_support_index.db \
             --memory 8Gi \
             --cpu 2 \
             --max-instances=2 \
@@ -75,6 +75,20 @@ jobs:
             --install=datasette-hashed-urls \
             --install=datasette-block-robots \
             # --install=datasette-search-all
+
+            gcloud storage cp gs://thefoiabakery/cookbook.db cookbook.db
+            sqlite-utils enable-fts cookbook.db pages page_text
+            sqlite-utils enable-fts cookbook.db documents name
+
+            datasette publish cloudrun cookbook.db \
+            --memory 8Gi \
+            --cpu 2 \
+            --max-instances=2 \
+            --service cookbook \
+            --extra-options="--setting sql_time_limit_ms 100000 --cors" \
+            --install=pysqlite3-binary \
+            --install=datasette-hashed-urls \
+            --install=datasette-block-robots \
             
       - name: keepalive
         uses: gautamkrishnar/keepalive-workflow@v1            
